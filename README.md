@@ -10,8 +10,8 @@ $ DATE=$(date --iso-8601=date)
 Create input data:
 
 ```
-$ echo '{"rate": 1.2 }' >> /tmp/bookstore-rate-$DATE.json
-$ echo '{"revenue": 20 }' >> /tmp/bookstore-revenue-$DATE.json
+$ echo '{"rate": 1.2 }' > /tmp/bookstore-rate-$DATE.json
+$ echo '{"revenue": 20 }' > /tmp/bookstore-revenue-$DATE.json
 ```
 
 Clear previous runs:
