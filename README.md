@@ -1,7 +1,7 @@
 # airflow-example-bookstore
 Example Airflow DAG
 
-Set the scheduler date:
+Set the schedule date:
 
 ```
 $ DATE=$(date --iso-8601=date)
