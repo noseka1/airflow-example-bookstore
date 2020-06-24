@@ -1,6 +1,13 @@
 # airflow-example-bookstore
 Example Airflow DAG
 
+Drop the `bookstore.py` DAG into your $AIRFLOW_HOME/dags directory. Verify that the DAG was successully added to Airflow:
+
+```
+$ airflow list_dags | grep bookstore
+bookstore
+```
+
 Set the schedule date:
 
 ```
