@@ -17,8 +17,9 @@ $ DATE=$(date --iso-8601=date)
 Create input data:
 
 ```
-$ echo '{"rate": 1.2 }' > /tmp/bookstore-rate-$DATE.json
-$ echo '{"revenue": 20 }' > /tmp/bookstore-revenue-$DATE.json
+$ mkdir /tmp/bookstore
+$ echo '{"rate": 1.2 }' > /tmp/bookstore/rate-$DATE.json
+$ echo '{"revenue": 20 }' > /tmp/bookstore/revenue-$DATE.json
 ```
 
 Clear previous runs:
@@ -36,5 +37,5 @@ $ airflow backfill bookstore -s $DATE -e $DATE
 Print out the result:
 
 ```
-$ cat /tmp/bookstore-revenue-converted-$DATE.json
+$ cat /tmp/bookstore/revenue-converted-$DATE.json
 ```
