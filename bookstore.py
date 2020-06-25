@@ -21,13 +21,13 @@ dag = DAG(
 )
 
 def push_rate_func(**kwargs):
-    filename='/tmp/bookstore-rate-%s.json' % (kwargs.get('ds'))
+    filename='/tmp/bookstore/rate-%s.json' % (kwargs.get('ds'))
     with open(filename) as f:
         data = json.load(f)
     kwargs['ti'].xcom_push(key=None, value=data['rate'])
 
 def compute_revenue_func(**kwargs):
-    filename='/tmp/bookstore-revenue-%s.json' % (kwargs.get('ds'))
+    filename='/tmp/bookstore/revenue-%s.json' % (kwargs.get('ds'))
     with open(filename) as f:
         data = json.load(f)
     revenue = data['revenue']
@@ -38,18 +38,18 @@ def compute_revenue_func(**kwargs):
     converted_revenue = {
         "revenue": revenue * rate
     }
-    filename='/tmp/bookstore-revenue-converted-%s.json' % (kwargs.get('ds'))
+    filename='/tmp/bookstore/revenue-converted-%s.json' % (kwargs.get('ds'))
     with open(filename, 'w') as f:
         json.dump(converted_revenue, f)
 
 wait_for_revenue = FileSensor(
-    filepath='/tmp/bookstore-revenue-{{ ds }}.json',
+    filepath='/tmp/bookstore/revenue-{{ ds }}.json',
     task_id='wait_for_revenue',
     dag=dag,
 )
 
 wait_for_rate = FileSensor(
-    filepath='/tmp/bookstore-rate-{{ ds }}.json',
+    filepath='/tmp/bookstore/rate-{{ ds }}.json',
     task_id='wait_for_rate',
     dag=dag,
 )
