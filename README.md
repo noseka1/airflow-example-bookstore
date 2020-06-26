@@ -1,7 +1,13 @@
 # airflow-example-bookstore
 Example Airflow DAG
 
-Drop the `bookstore.py` DAG into your $AIRFLOW_HOME/dags directory. Verify that the DAG was successully added to Airflow:
+Drop the `bookstore.py` DAG into your `$AIRFLOW_HOME/dags` directory:
+
+```
+$ cp bookstore.py $AIRFLOW_HOME/dags
+```
+
+Verify that the DAG was successully added to Airflow:
 
 ```
 $ airflow list_dags | grep bookstore
@@ -22,7 +28,7 @@ $ echo '{"rate": 1.2 }' > /tmp/bookstore/rate-$DATE.json
 $ echo '{"revenue": 20 }' > /tmp/bookstore/revenue-$DATE.json
 ```
 
-Clear previous runs:
+Clear previous DAG runs:
 
 ```
 $ airflow clear --no_confirm -s $DATE -e $DATE bookstore
