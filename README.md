@@ -37,5 +37,5 @@ $ airflow backfill bookstore -s $DATE -e $DATE
 Print out the result:
 
 ```
-$ cat /tmp/bookstore/revenue-converted-$DATE.json
+$ cat /tmp/bookstore/revenue-report-$DATE.json
 ```
