@@ -38,7 +38,7 @@ def compute_revenue_func(**kwargs):
     converted_revenue = {
         "revenue": revenue * rate
     }
-    filename='/tmp/bookstore/revenue-converted-%s.json' % (kwargs.get('ds'))
+    filename='/tmp/bookstore/revenue-report-%s.json' % (kwargs.get('ds'))
     with open(filename, 'w') as f:
         json.dump(converted_revenue, f)
 
@@ -61,15 +61,15 @@ push_rate = PythonOperator(
     dag=dag,
 )
 
-compute_revenue = PythonOperator(
-    task_id='compute_revenue',
+compute_report = PythonOperator(
+    task_id='compute_report',
     provide_context=True,
     python_callable=compute_revenue_func,
     dag=dag,
 )
 
-wait_for_revenue >> compute_revenue
-wait_for_rate >> push_rate >> compute_revenue
+wait_for_revenue >> compute_report
+wait_for_rate >> push_rate >> compute_report
 
 if __name__ == "__main__":
     dag.cli()
